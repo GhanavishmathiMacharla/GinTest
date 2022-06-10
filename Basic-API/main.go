@@ -12,6 +12,12 @@ type Book struct {
 	Author string `json:"author"`
 }
 
+var books = []Book{
+	{ID: "1", Title: "Harry Potter", Author: "J. K. Rowling"},
+	{ID: "2", Title: "The Lord of the Rings", Author: "J. R. R. Tolkien"},
+	{ID: "3", Title: "The Wizard of Oz", Author: "L. Frank Baum"},
+}
+
 func main() {
 	r := gin.New()
 	r.GET("/", func(c *gin.Context) {
