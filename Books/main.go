@@ -62,9 +62,13 @@ func deleteBookHandler(c *gin.Context) {
 func show(c *gin.Context) {
 	id := c.Param("id")
 	//var book_1 Book
-	for i, a := range books {
+	for _, a := range books {
 		if a.ID == id {
-			c.JSON(http.StatusOK, books[:i])
+			c.JSON(http.StatusOK, gin.H{
+				"id":     a.ID,
+				"title":  a.Title,
+				"author": a.Author,
+			})
 			//	book_1 = books[:i]
 		}
 	}
