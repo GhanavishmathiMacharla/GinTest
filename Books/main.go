@@ -12,6 +12,7 @@ func main() {
 	r.GET("/books", listBooksHandler)
 	r.POST("/books", createBookhandler)
 	r.DELETE("/books/:id", deleteBookHandler)
+	r.GET("/books/:id", show)
 
 	r.Run()
 }
@@ -56,4 +57,15 @@ func deleteBookHandler(c *gin.Context) {
 	}
 
 	c.Status(http.StatusNoContent)
+}
+
+func show(c *gin.Context) {
+	id := c.Param("id")
+	//var book_1 Book
+	for i, a := range books {
+		if a.ID == id {
+			c.JSON(http.StatusOK, books[:i])
+			//	book_1 = books[:i]
+		}
+	}
 }

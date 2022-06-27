@@ -1,7 +1,8 @@
 GET http://localhost:8080/books
 ###
 
-
+GET http://localhost:8080/books/1
+###
 POST http://localhost:8080/books
 Content-Type: application/json
 
@@ -10,3 +11,6 @@ Content-Type: application/json
     "title":"The GodFather",
     "author":"Mario Puzo"
 }
+###
+
+DELETE http://localhost:8080/books/2
