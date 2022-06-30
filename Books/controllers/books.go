@@ -7,13 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// func FindBooks(c *gin.Context) {
-// 	var books []models.Book
-// 	models.DB.Find(&books)
-
-// 	c.JSON(http.StatusOK, gin.H{"data": books})
-// }
-
 type CreateBookInput struct {
 	Title  string `json:"title" binding:"required"`
 	Author string `json:"author"`
@@ -31,19 +24,6 @@ func Data_entry() {
 func ListBooksHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, books)
 }
-
-// func CreateBookhandler(c *gin.Context) {
-// 	var book models.Book
-// 	err := c.ShouldBindJSON(&book)
-// 	if err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{
-// 			"err": err.Error(),
-// 		})
-// 		return
-// 	}
-// 	books = append(books, book)
-// 	c.JSON(http.StatusCreated, book)
-// }
 
 func CreateBook(c *gin.Context) {
 	var input CreateBookInput
@@ -79,7 +59,7 @@ func Show(c *gin.Context) {
 
 func Update(c *gin.Context) {
 	var book models.Book
-	//id:=c.Param("id")
+
 	if err := models.DB.Where("id=?", c.Param("id")).First(&book).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
 		return
